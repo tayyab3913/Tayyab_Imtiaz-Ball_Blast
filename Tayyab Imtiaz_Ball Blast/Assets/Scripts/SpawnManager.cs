@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
         
     }
 
+    // This method is used to Instantiate random balls above screen
     void InstantiateBalls()
     {
         ballIndex = Random.Range(0, ballPrefabs.Length);

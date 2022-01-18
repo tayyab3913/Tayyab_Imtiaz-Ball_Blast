@@ -19,11 +19,13 @@ public class FireScript : MonoBehaviour
         DestroyOutOfBounds();
     }
 
+    // This method moves the fire GameObject upwards
     void FireMovement()
     {
         transform.Translate(Vector3.up * Time.deltaTime * fireSpeed);
     }
 
+    // This method destroys the fire GameObject when it is outside the upper bounds
     void DestroyOutOfBounds()
     {
         if(transform.position.y > upBound)
@@ -32,6 +34,7 @@ public class FireScript : MonoBehaviour
         }
     }
 
+    // This method calls the scripts in Ball GameObject on Collision
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponent<BallScript>() != null)

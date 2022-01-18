@@ -28,12 +28,14 @@ public class PlayerController : MonoBehaviour
         KeepPlayerInbounds();
     }
 
+    // This method controls the movement of the ball on the x-axis
     void PlayerMovement()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * Time.deltaTime * playerSpeed * horizontalInput);
     }
 
+    // This method instantiates a fire prefab in the scene whenever "Space" key is pressed
     void ShootFire()
     {
         if(Input.GetKeyDown(KeyCode.Space))
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
         }     
     }
 
+    // This method keeps the player inside the playable area
     void KeepPlayerInbounds()
     {
         if(transform.position.x < -leftRightBounds)
@@ -54,22 +57,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // This method increases the score and uses another method to display it every time it is called
     public void IncrementScore()
     {
         score++;
         DisplayScore();
     }
 
+    // This method prints the score on the console
     void DisplayScore()
     {
         Debug.Log("Score: " + score);
     }
 
+    // This method prints the health on the console
     void DisplayHealth()
     {
         Debug.Log("Health: " + health);
     }
 
+    // This method decrements the health, then displays it, and checks if the game is over
     public void GetDamage()
     {
         health--;
@@ -77,6 +84,7 @@ public class PlayerController : MonoBehaviour
         CheckGameOver();
     }
 
+    // This method checks if the game is over when player has 0 health
     void CheckGameOver()
     {
         if(health < 1)
@@ -86,6 +94,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    // This method destroys game objects and calls other logic of balls instantiation on collision
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("BigBall"))

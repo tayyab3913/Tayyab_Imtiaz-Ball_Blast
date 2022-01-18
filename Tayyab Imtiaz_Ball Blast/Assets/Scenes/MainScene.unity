@@ -472,6 +472,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 425654157662127331, guid: 005f7c4643f24e745ad6e46384fc2703, type: 3}
+      propertyPath: m_TagString
+      value: LeftWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 425654158974269744, guid: 005f7c4643f24e745ad6e46384fc2703, type: 3}
+      propertyPath: m_TagString
+      value: RightWall
+      objectReference: {fileID: 0}
     - target: {fileID: 425654158974269749, guid: 005f7c4643f24e745ad6e46384fc2703, type: 3}
       propertyPath: m_Enabled
       value: 0
