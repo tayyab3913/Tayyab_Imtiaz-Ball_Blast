@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -33,5 +34,10 @@ public class SpawnManager : MonoBehaviour
             spawnPoint = new Vector3(Random.Range(-9f, 9f), 12, 0);
             Instantiate(ballPrefabs[ballIndex], spawnPoint, ballPrefabs[ballIndex].transform.rotation);
         }  
+    }
+
+    public void ReloadMainScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -7,10 +7,13 @@ public class UIManager : MonoBehaviour
     public Text scoreText;
     public Text healthText;
     public Text gameOver;
+    public Button reloadButton;
+
     // Start is called before the first frame update
     void Start()
     {
         playerScript = GetComponent<PlayerController>();
+        reloadButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,6 +23,7 @@ public class UIManager : MonoBehaviour
         healthText.text = "Health: " + playerScript.health.ToString();
         if(playerScript.gameOver == true)
         {
+            reloadButton.gameObject.SetActive(true);
             gameOver.text = "!!! Game Over !!!";
         }
     }
