@@ -9,10 +9,12 @@ public class SpawnManager : MonoBehaviour
     public float ballSpawnRate;
     private int ballIndex;
     private Vector3 spawnPoint;
+    private PlayerController playerScript;
     
     // Start is called before the first frame update
     void Start()
     {
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         InvokeRepeating("InstantiateBalls", startDelay, ballSpawnRate);
     }
 
@@ -25,8 +27,11 @@ public class SpawnManager : MonoBehaviour
     // This method is used to Instantiate random balls above screen
     void InstantiateBalls()
     {
-        ballIndex = Random.Range(0, ballPrefabs.Length);
-        spawnPoint = new Vector3(Random.Range(-15f, 15f), 15, 0);
-        Instantiate(ballPrefabs[ballIndex], spawnPoint, ballPrefabs[ballIndex].transform.rotation);
+        if(playerScript.gameOver == false)
+        {
+            ballIndex = Random.Range(0, ballPrefabs.Length);
+            spawnPoint = new Vector3(Random.Range(-9f, 9f), 12, 0);
+            Instantiate(ballPrefabs[ballIndex], spawnPoint, ballPrefabs[ballIndex].transform.rotation);
+        }  
     }
 }

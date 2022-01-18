@@ -22,6 +22,10 @@ public class BallScript : MonoBehaviour
     void Update()
     {
         DestroyOutOfBounds();
+        if(playerScript.gameOver == true)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // This method moves the balls based on collisions with different parts of the ground
