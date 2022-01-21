@@ -66,47 +66,6 @@ public class BallScript : MonoBehaviour
         ballRB.AddForce(Vector3.right * 4, ForceMode.Impulse);
     }
 
-    // This method is called by fire script when it collides with this game object. It increases score and destroys gameobjects
-    public void GotFired()
-    {
-        if(health > 1)
-        {
-            BallIsHit();
-        } else
-        {
-            Destroy(gameObject);
-        }
-        //if(gameObject.CompareTag("BigBall"))
-        //{
-        //    playerScript.IncrementScore();
-        //    GetDamageForBigBall();
-        //} else if(gameObject.CompareTag("SmallBall"))
-        //{
-        //    playerScript.IncrementScore();
-        //    Destroy(gameObject);
-        //}
-    }
-
-    // This method instantiates small balls when the big ball is going to get destroyed
-    public void InstantiateSmallBalls()
-    {
-        ballReference = Instantiate(smallBallPrefab, transform.position, smallBallPrefab.transform.rotation);
-        ballReference.GetComponent<Rigidbody>().AddForce(Vector3.left * 3, ForceMode.Impulse);
-        ballReference = Instantiate(smallBallPrefab, transform.position, smallBallPrefab.transform.rotation);
-        ballReference.GetComponent<Rigidbody>().AddForce(Vector3.right * 3, ForceMode.Impulse);
-    }
-
-    // This method decrements damage of the big ball and instantiates small balls when it's health is 0
-    void GetDamageForBigBall()
-    {
-        health--;
-        if(health < 1)
-        {
-            InstantiateSmallBalls();
-            Destroy(gameObject);
-        }
-    }
-
     // This method destroys the balls in case they fall of the screen
     void DestroyOutOfBounds()
     {
@@ -116,11 +75,13 @@ public class BallScript : MonoBehaviour
         }
     }
 
+    // This method accepts the Spawn Manager reference and is called by spawn manager when the ball is initialized
     public void InitializeBall(SpawnManager manager)
     {
         spawnManager = manager;
     }
 
+    // This method is called when a ball is hit by a bullet, it increments the score, creates new balls, and gets destroyed
     public void BallIsHit()
     {
         playerScript.IncrementScore();

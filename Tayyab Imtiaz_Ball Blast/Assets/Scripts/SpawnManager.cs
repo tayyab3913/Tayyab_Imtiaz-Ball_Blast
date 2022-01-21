@@ -37,19 +37,25 @@ public class SpawnManager : MonoBehaviour
         }  
     }
 
+    // This method reloads the main scene
     public void ReloadMainScene()
     {
         SceneManager.LoadScene(0);
     }
 
+    // This method is called by the ball script everytime a ball collides with either player or fire
     public void Instantiate2BallsWithImpulse(int id, Transform spawnTransform)
     {
+        InstantiateBallWithImpulse(id-1, spawnTransform, Vector3.left);
+        InstantiateBallWithImpulse(id-1, spawnTransform, Vector3.right);
+    }
+
+    // This method creates a ball with the given parameters at a specific transform with a direction for impulse
+    void InstantiateBallWithImpulse(int id, Transform spawnTransform, Vector3 direction)
+    {
         GameObject ball;
-        ball = Instantiate(ballPrefabs[id - 1], spawnTransform.position, ballPrefabs[id - 1].transform.rotation);
+        ball = Instantiate(ballPrefabs[id], spawnTransform.position, ballPrefabs[id].transform.rotation);
         ball.GetComponent<BallScript>().InitializeBall(this);
-        ball.GetComponent<Rigidbody>().AddForce(Vector3.left * 3, ForceMode.Impulse);
-        ball = Instantiate(ballPrefabs[id - 1], spawnTransform.position, ballPrefabs[id - 1].transform.rotation);
-        ball.GetComponent<BallScript>().InitializeBall(this);
-        ball.GetComponent<Rigidbody>().AddForce(Vector3.right * 3, ForceMode.Impulse);
+        ball.GetComponent<Rigidbody>().AddForce(direction * 3, ForceMode.Impulse);
     }
 }

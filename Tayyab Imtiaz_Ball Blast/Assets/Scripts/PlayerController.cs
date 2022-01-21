@@ -103,16 +103,5 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.GetComponent<BallScript>().BallIsHit();
             GetDamage();
         }
-        //if(collision.gameObject.CompareTag("BigBall"))
-        //{
-        //    collision.gameObject.GetComponent<BallScript>().BallIsHit();
-        //    Destroy(collision.gameObject);
-        //    GetDamage();
-        //}
-        //if (collision.gameObject.CompareTag("SmallBall"))
-        //{
-        //    Destroy(collision.gameObject);
-        //    GetDamage();
-        //}
     }
 }
