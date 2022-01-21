@@ -7,10 +7,12 @@ public class BallScript : MonoBehaviour
     public GameObject smallBallPrefab;
     public float bounceImpulse;
     public int health;
+    public SpawnManager spawnManager;
     private int randomImpulse;
     private GameObject ballReference;
     private Rigidbody ballRB;
     private PlayerController playerScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,15 +69,22 @@ public class BallScript : MonoBehaviour
     // This method is called by fire script when it collides with this game object. It increases score and destroys gameobjects
     public void GotFired()
     {
-        if(gameObject.CompareTag("BigBall"))
+        if(health > 1)
         {
-            playerScript.IncrementScore();
-            GetDamageForBigBall();
-        } else if(gameObject.CompareTag("SmallBall"))
+            BallIsHit();
+        } else
         {
-            playerScript.IncrementScore();
             Destroy(gameObject);
         }
+        //if(gameObject.CompareTag("BigBall"))
+        //{
+        //    playerScript.IncrementScore();
+        //    GetDamageForBigBall();
+        //} else if(gameObject.CompareTag("SmallBall"))
+        //{
+        //    playerScript.IncrementScore();
+        //    Destroy(gameObject);
+        //}
     }
 
     // This method instantiates small balls when the big ball is going to get destroyed
@@ -105,5 +114,25 @@ public class BallScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void InitializeBall(SpawnManager manager)
+    {
+        spawnManager = manager;
+    }
+
+    public void BallIsHit()
+    {
+        playerScript.IncrementScore();
+        if (health>1)
+        {
+            health--;
+            spawnManager.Instantiate2BallsWithImpulse(health, transform);
+            Destroy(gameObject);
+        } else
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

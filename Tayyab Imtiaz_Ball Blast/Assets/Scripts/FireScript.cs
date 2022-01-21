@@ -37,9 +37,9 @@ public class FireScript : MonoBehaviour
     // This method calls the scripts in Ball GameObject on Collision
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<BallScript>() != null)
+        if(other.gameObject.CompareTag("Ball"))
         {
-            other.gameObject.GetComponent<BallScript>().GotFired();
+            other.gameObject.GetComponent<BallScript>().BallIsHit();
             Destroy(gameObject);
         }
     }

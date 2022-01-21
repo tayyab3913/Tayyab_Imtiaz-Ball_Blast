@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6374773357131746254}
   m_Layer: 6
   m_Name: SmallBall
-  m_TagString: SmallBall
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a82800b83afd8d84ca67c511d0d74101, type: 2}
+  - {fileID: 2100000, guid: 26e0a0b5b6448874bbe3b2911f4eb074, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,3 +128,4 @@ MonoBehaviour:
   smallBallPrefab: {fileID: 4986177804599350430}
   bounceImpulse: 3
   health: 1
+  spawnManager: {fileID: 1649162436992411618, guid: 7a9be093505bc884c87af0cb6894e87c, type: 3}

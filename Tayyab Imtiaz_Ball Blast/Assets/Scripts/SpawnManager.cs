@@ -32,12 +32,24 @@ public class SpawnManager : MonoBehaviour
         {
             ballIndex = Random.Range(0, ballPrefabs.Length);
             spawnPoint = new Vector3(Random.Range(-9f, 9f), 12, 0);
-            Instantiate(ballPrefabs[ballIndex], spawnPoint, ballPrefabs[ballIndex].transform.rotation);
+            GameObject ball = Instantiate(ballPrefabs[ballIndex], spawnPoint, ballPrefabs[ballIndex].transform.rotation);
+            ball.GetComponent<BallScript>().InitializeBall(this);
         }  
     }
 
     public void ReloadMainScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void Instantiate2BallsWithImpulse(int id, Transform spawnTransform)
+    {
+        GameObject ball;
+        ball = Instantiate(ballPrefabs[id - 1], spawnTransform.position, ballPrefabs[id - 1].transform.rotation);
+        ball.GetComponent<BallScript>().InitializeBall(this);
+        ball.GetComponent<Rigidbody>().AddForce(Vector3.left * 3, ForceMode.Impulse);
+        ball = Instantiate(ballPrefabs[id - 1], spawnTransform.position, ballPrefabs[id - 1].transform.rotation);
+        ball.GetComponent<BallScript>().InitializeBall(this);
+        ball.GetComponent<Rigidbody>().AddForce(Vector3.right * 3, ForceMode.Impulse);
     }
 }

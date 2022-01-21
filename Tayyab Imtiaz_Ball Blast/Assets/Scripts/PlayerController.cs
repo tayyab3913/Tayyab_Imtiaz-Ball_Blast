@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            shootPosition = new Vector3(transform.position.x, transform.position.y + 1f, 0);
+            shootPosition = new Vector3(transform.position.x, -4 + 1f, 0);
             Instantiate(firePrefab, shootPosition, firePrefab.transform.rotation);
         }     
     }
@@ -98,16 +98,21 @@ public class PlayerController : MonoBehaviour
     // This method destroys game objects and calls other logic of balls instantiation on collision
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("BigBall"))
+        if(collision.gameObject.CompareTag("Ball"))
         {
-            collision.gameObject.GetComponent<BallScript>().InstantiateSmallBalls();
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<BallScript>().BallIsHit();
             GetDamage();
         }
-        if (collision.gameObject.CompareTag("SmallBall"))
-        {
-            Destroy(collision.gameObject);
-            GetDamage();
-        }
+        //if(collision.gameObject.CompareTag("BigBall"))
+        //{
+        //    collision.gameObject.GetComponent<BallScript>().BallIsHit();
+        //    Destroy(collision.gameObject);
+        //    GetDamage();
+        //}
+        //if (collision.gameObject.CompareTag("SmallBall"))
+        //{
+        //    Destroy(collision.gameObject);
+        //    GetDamage();
+        //}
     }
 }
